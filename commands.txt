@@ -180,6 +180,9 @@ I am an AI assistant, I can help you answer questions!
 
 The script failed because the maximum token count was too small so the model got cut off half way with a finish reason of length, not being able to finish the string.
 
+git add ollama/ commands.txt
+git commit -m "Add Python calls"
+git push
 
 
 
