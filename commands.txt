@@ -220,3 +220,7 @@ When you stop the instance and not terminate it, you don't pay for the codes tha
 
 exit
 
+git add .
+git commit -m "Add AWS analysis results"
+
+
