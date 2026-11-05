@@ -182,8 +182,41 @@ The script failed because the maximum token count was too small so the model got
 
 git add ollama/ commands.txt
 git commit -m "Add Python calls"
+ 1 file changed, 3 insertions(+)
 git push
 
+chmod 400 ~/Downloads/datasciquiz3.pem
+ssh -i ~/Downloads/datasciquiz3.pem ubuntu@3.15.230.251
+ubuntu@ip-172-31-xx-xx:~$
 
+sudo apt update
+sudo apt install -y python3-pandas python3-matplotlib python3-seaborn
 
+On local terminal:
+cd ~/Desktop/datasci350-quiz03
+ls aws
+traffic_analysis.py     website_traffic.txt
+
+scp -i /Users/stephanie/Downloads/datasciquiz3.pem aws/traffic_analysis.py ubuntu@3.15.230.251:~
+scp -i /Users/stephanie/Downloads/datasciquiz3.pem aws/website_traffic.txt ubuntu@3.15.230.251:~
+
+python3 traffic_analysis.py > results.txt
+cat /var/lib/cloud/data/instance-id >> results.txt
+sha256sum results.txt > fingerprint.txt
+
+scp -i /Users/stephanie/Downloads/datasciquiz3.pem ubuntu@3.15.230.251:~/results.txt aws/
+results.txt      
+
+scp -i /Users/stephanie/Downloads/datasciquiz3.pem ubuntu@3.15.230.251:~/fingerprint.txt aws/
+fingerprint.txt   
+
+scp -i /Users/stephanie/Downloads/datasciquiz3.pem ubuntu@3.15.230.251:~/traffic_analysis.png aws/
+traffic_analysis.png  
+
+ls aws
+fingerprint.txt         results.txt             traffic_analysis.png    traffic_analysis.py     website_traffic.txt
+
+When you stop the instance and not terminate it, you don't pay for the codes that you add to it but the storage that is used you still need to pay for it. 
+
+exit
 
