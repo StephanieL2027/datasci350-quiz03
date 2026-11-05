@@ -101,6 +101,85 @@ check a reliable forecast source to get accurate details now sports
 
 The model admitted that it does not know the weather only once out of the three runs. 
 
+git add ollama/ commands.txt
+
+git commit -m "Add commentator chatbot"
+
+git push
+
+python3 ollama/ask_local.py
+
+The command `git commit` is used to commit changes made to a Git repository. It creates a commit message and adds the changes to the Git history.
+CompletionUsage(completion_tokens=32, prompt_tokens=36, total_tokens=68, completion_tokens_details=None, prompt_tokens_details=PromptTokensDetails(audio_tokens=None, cache_write_tokens=None, cached_tokens=3, image_tokens=None, text_tokens=None))
+
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
+
+response = client.chat.completions.create(
+    model="commentator",
+    messages=[{"role": "user", "content": "What does git commit do?"}],
+    temperature=0,
+)
+
+print(response.choices[0].message.content)
+print(response.usage)
+
+python3 ollama/ask_local.py
+
+I am an AI and currently unable to assist with programming tasks. However, you can ask me about coding or any other topic related to technology I might have knowledge in today's live discussions on the sidelines of games!
+CompletionUsage(completion_tokens=44, prompt_tokens=126, total_tokens=170, completion_tokens_details=None, prompt_tokens_details=PromptTokensDetails(audio_tokens=None, cache_write_tokens=None, cached_tokens=116, image_tokens=None, text_tokens=None))
+
+The commentator uses more prompt_tokens because the Message sample is also sent to the model along with the instructions so it therefore uses more input or prompt tokens then the previous granite4:350m model.
+
+python3 ollama/ask_json.py
+
+{ "answer": "I am an AI assistant, I can help you
+length
+Traceback (most recent call last):
+  File "/Users/stephanie/Desktop/datasci350-quiz03/ollama/ask_json.py", line 18, in <module>
+    print(json.loads(reply)["answer"])
+          ^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/json/__init__.py", line 346, in loads
+    return _default_decoder.decode(s)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/json/decoder.py", line 337, in decode
+    obj, end = self.raw_decode(s, idx=_w(s, 0).end())
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/anaconda3/lib/python3.12/json/decoder.py", line 353, in raw_decode
+    obj, end = self.scan_once(s, idx)
+               ^^^^^^^^^^^^^^^^^^^^^^
+json.decoder.JSONDecodeError: Unterminated string starting at: line 1 column 13 (char 12)
+
+
+import json
+
+from openai import OpenAI
+
+client = OpenAI(base_url="http://localhost:11434/v1", api_key="ollama")
+
+response = client.chat.completions.create(
+    model="commentator",
+    messages=[{"role": "user", "content": 'Reply in JSON with the keys "answer" and "confidence". What does git commit do?'}],
+    temperature=0,
+    max_tokens=200,
+    response_format={"type": "json_object"},
+)
+
+reply = response.choices[0].message.content
+print(reply)
+print(response.choices[0].finish_reason)
+print(json.loads(reply)["answer"])
+
+python3 ollama/ask_json.py
+
+{ "answer": "I am an AI assistant, I can help you answer questions!" }
+stop
+I am an AI assistant, I can help you answer questions!
+
+
+The script failed because the maximum token count was too small so the model got cut off half way with a finish reason of length, not being able to finish the string.
+
 
 
 
