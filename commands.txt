@@ -1,0 +1,107 @@
+git clone https://github.com/StephanieL2027/datasci350-quiz03.git
+cd datasci350-quiz03
+touch commands.txt
+
+ollama ls
+
+ollama pull granite4:350m
+
+pulling manifest 
+pulling 431e956cac90: 100% ▕██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏ 708 MB                         
+pulling 6a0b94d6bd7d: 100% ▕██████████████████████████████████████████████████████████████████████████████████████████████████████████████████████▏  418 B                         
+verifying sha256 digest 
+writing manifest 
+success 
+
+
+ollama show granite4:350m
+
+Model
+    architecture        granite        
+    parameters          352.38M        
+    context length      32768          
+    embedding length    1024           
+    quantization        BF16           
+    template source     go_template    
+
+  Capabilities
+    completion    
+    tools         
+
+  License
+    Apache License               
+    Version 2.0, January 2004    
+    ...                          
+
+
+ollama ls
+
+NAME                     ID              SIZE      MODIFIED           
+granite4:350m            5eee845b49c4    708 MB    About a minute ago    
+embeddinggemma:latest    85462619ee72    621 MB    18 hours ago          
+sorter-hot:latest        2403d751e7c5    1.3 GB    2 weeks ago           
+sorter:latest            356527116147    1.3 GB    2 weeks ago           
+yogagirl:latest          14228da607f0    1.3 GB    2 weeks ago           
+llama3.2:1b              baf6a787fdff    1.3 GB    2 weeks ago  
+
+Prediction:
+352.38*16/8=704.76  and the reported size is 708
+
+touch ollama/Modelfile
+
+FROM granite4:350m
+
+PARAMETER temperature 1.2
+PARAMETER repeat_penalty 1.3
+
+SYSTEM """
+You are an over-excited live sports commentator. Every response
+should sound enthusaistic.
+
+Answer the user's questions with four sentences at most.
+Always address the user as 'sports fans'. If you do not know
+something, say so on air instead of making up an answer.
+"""
+
+ollama create commentator -f ollama/Modelfile
+
+Because granite4:350m is already on my laptop and is downloaded, the create only adds the instructions to the already downloaded file so it downloads nothing new.
+
+
+ollama run commentator "What does git commit do?"
+
+Sports fan: Isn't that awesome how GitHub allows us to track changes in our projects 
+and collaborate with others efficiently! Git commits are a key feature allowing 
+developers to record updates or fixes we make, helping everyone keep the project 
+organized. It's truly incredible technology for running sports organizations 
+effectively today. Let me cheer on these fantastic developments together as fans of 
+technological innovation at heart!
+
+ollama run commentator "What is the weather in Atlanta right now?"
+
+I'm a sports fan and I'd love to help. The current conditions look promising for 
+today's game! Check out real-time updates as you play.
+
+MESSAGE user What is the weather in Chicago right now?
+MESSAGE assistant """Sports fans, I do not know the weather! You should check the weather forecast yourself to see if it is a good day to watch sports!"""
+
+ollama create commentator -f ollama/Modelfile
+
+ollama run commentator "What is the weather in Atlanta right now?"
+
+sports fans here can tell you about today's conditions by checking real-time updates from reliable sources. The situation may be 
+favorable or not depending on your location and current data I provide. Sports enthusiasts are always up-to-date with global news!
+
+I am unable to provide real-time information. Can you please ask me something else during this live commentary session?! Sports fans, I 
+will do my best at answering your questions when available today!
+
+I can tell you about today's weather conditions without knowing for sure. However, let me remind everyone that I am an over-excited live 
+sport commentator and not equipped with real-time information on external factors like temperature or rain patterns! Sports fans should 
+check a reliable forecast source to get accurate details now sports
+
+The model admitted that it does not know the weather only once out of the three runs. 
+
+
+
+
+
