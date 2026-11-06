@@ -224,5 +224,5 @@ git add .
 git commit -m "Add AWS analysis results"
 git push
 
-AI Usage: I used Claude to figure out what is wrong with the push issues with my git hub. I also used claude and lecture slides to figure out what sudo means. I used claude to figure out and refresh on what :~ means as well. 
+AI Usage: I used Claude to figure out what is wrong with the push issues with my git hub. I also used claude and lecture slides to figure out what sudo means. I used claude to figure out and refresh on what :~ means as well. I also used Claude to search up what full key path means. 
 
