@@ -77,10 +77,15 @@ organized. It's truly incredible technology for running sports organizations
 effectively today. Let me cheer on these fantastic developments together as fans of 
 technological innovation at heart!
 
+The model used four sentences but did not address audience as sports fan and because they knew the answer the last instruction is not applicable.
+
+
 ollama run commentator "What is the weather in Atlanta right now?"
 
 I'm a sports fan and I'd love to help. The current conditions look promising for 
 today's game! Check out real-time updates as you play.
+
+The model used less than four sentences but did not address audience as sports fan and did not admit that they do not know. 
 
 MESSAGE user What is the weather in Chicago right now?
 MESSAGE assistant """Sports fans, I do not know the weather! You should check the weather forecast yourself to see if it is a good day to watch sports!"""
@@ -187,7 +192,7 @@ git push
 
 chmod 400 ~/Downloads/datasciquiz3.pem
 ssh -i ~/Downloads/datasciquiz3.pem ubuntu@3.15.230.251
-ubuntu@ip-172-31-xx-xx:~$
+ubuntu@ip-172-31-19-154:~$
 
 sudo apt update
 sudo apt install -y python3-pandas python3-matplotlib python3-seaborn
@@ -224,5 +229,5 @@ git add .
 git commit -m "Add AWS analysis results"
 git push
 
-AI Usage: I used Claude to figure out what is wrong with the push issues with my git hub. I also used claude and lecture slides to figure out what sudo means. I used claude to figure out and refresh on what :~ means as well. I also used Claude to search up what full key path means. 
+AI Usage: I used Claude to figure out what is wrong with the push issues with my git hub. I also used claude and lecture slides to figure out what sudo means. I used claude to figure out and refresh on what :~ means as well. I also used Claude to search up what full key path means. I also used claude to ask what the aws prompt line means. 
 
